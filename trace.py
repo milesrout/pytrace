@@ -1,10 +1,10 @@
 import functools
 
 def trace(show_counter=False, show_types=False):
-    def wrapper(f):
+    def outer_wrapper(f):
         counter = 0
         @functools.wraps(f)
-        def foo(*args):
+        def inner_wrapper(*args):
             nonlocal counter
             counter += 1
             local_counter = counter
@@ -24,8 +24,8 @@ def trace(show_counter=False, show_types=False):
             else:
                 print('{}({}) -> {}'.format(f.__name__, args_string, ret))
             return ret
-        return foo
-    return wrapper
+        return inner_wrapper
+    return outer_wrapper
 
 if __name__ == '__main__':
     for sc in [True, False]:
