@@ -1,3 +1,5 @@
+# Licensed CC0, see file LICENSE.
+
 import functools
 
 def trace(show_counter=False, show_types=False):
@@ -32,8 +34,8 @@ if __name__ == '__main__':
         for st in [True, False]:
             @trace(show_counter=sc, show_types=st)
             def fib(n):
-                if n == 0:
+                if n == 0 or n == 1:
                     return 1
-                return n * fib(n-1)
-            fib(5)
+                return fib(n-2) + fib(n-1)
+            fib(6)
 
