@@ -11,7 +11,6 @@ def trace(show_counter=False, show_types=False):
             counter += 1
             local_counter = counter
 
-            args_string = None
             if show_types:
                 args_string = ', '.join(
                     '{}: {}'.format(arg, type(arg).__name__
@@ -22,9 +21,9 @@ def trace(show_counter=False, show_types=False):
             ret = f(*args)
 
             if show_counter:
-                print('{} {}({}) -> {}'.format(local_counter, f.__name__, args_string, ret))
-            else:
-                print('{}({}) -> {}'.format(f.__name__, args_string, ret))
+                print(local_counter, end=' ')
+            print('{}({}) -> {}'.format(f.__name__, args_string, ret))
+            
             return ret
         return inner_wrapper
     return outer_wrapper
@@ -38,4 +37,3 @@ if __name__ == '__main__':
                     return 1
                 return fib(n-2) + fib(n-1)
             fib(6)
-
