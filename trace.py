@@ -23,7 +23,7 @@ def trace(show_counter=False, show_types=False):
             if show_counter:
                 print(local_counter, end=' ')
             print('{}({}) -> {}'.format(f.__name__, args_string, ret))
-            
+
             return ret
         return inner_wrapper
     return outer_wrapper
